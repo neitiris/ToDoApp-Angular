@@ -1,3 +1,12 @@
 <div class="login-container">
-
+  <div class="login-form-container">
+    <form
+      class="login-form">
+      <h1>Login Page</h1>
+      <h2>Sign in</h2>
+      <input type="email" class="lInput" [(ngModel)]="user.email"  placeholder="Email" name="email">
+      <input type="password" class="lInput" [(ngModel)]="user.password" placeholder="Password" name="password">
+      <button class="submit" (click)="auth(user)">Sign In</button>
+    </form>
+  </div>
 </div>
