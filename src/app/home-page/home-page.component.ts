@@ -52,7 +52,7 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private dataService: DataService,
+    public dataService: DataService,
     private authService: AuthService
   ) {
   }
