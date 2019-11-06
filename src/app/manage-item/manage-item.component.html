@@ -1,14 +1,23 @@
-<div id="changes">
-  <ul>
-    <li><h3>First Name</h3>
-      <input type="text" name="firstName" [(ngModel)]="user.firstName" />
-      <input type="text" name="firstName" [(ngModel)]="user.lastName" />
-    </li>
-  </ul>
-  <button id="backMenu">Back</button>
+<div class="changes--container">
+  <label class="changes--container_label">
+    First Name <br>
+    <input type="text" name="firstName" [(ngModel)]="user.firstName"/>
+  </label>
+  <label class="changes--container_label">
+    Last Name <br>
+    <input type="text" name="firstName" [(ngModel)]="user.lastName"/>
+  </label>
   <button
-    id="saveNpush" (click)="saveUser(user)"
+    class="btn--save changes--container_btn"
+    (click)="saveUser(user)"
   >
     {{options.isNew ? 'Create' : 'Update'}}
   </button>
+  <p
+    *ngIf="options.empty"
+    style="color:#a90000; font-size:14px"
+  >
+    Please enter firstName and lastName
+  </p>
+  <button class="btn--close changes--container_btn" (click)="close()">Close</button>
 </div>

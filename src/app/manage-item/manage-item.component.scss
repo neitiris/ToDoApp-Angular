@@ -1,0 +1,13 @@
+.changes--container {
+  display: inline-grid;
+  position: absolute;
+  top: 80px;
+  max-width: 180px;
+  left: 10px;
+  &_label, &_btn {
+    margin-bottom: 5px;
+  }
+  &_btn {
+    height: 30px;
+  }
+}

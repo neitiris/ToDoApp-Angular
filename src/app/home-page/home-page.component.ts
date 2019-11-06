@@ -1,43 +1,61 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { DataService } from '../../services/data';
-import { AuthService } from '../../services/authservice';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {DataService} from '../../services/data';
+import {AuthService} from '../../services/authservice';
+import {
+  animate,
+  animateChild,
+  query,
+  stagger,
+  state,
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  styleUrls: ['./home-page.component.scss'],
+  animations: [
+    trigger('items', [
+      transition(':enter', [
+        query('@items', stagger(300, animateChild()), { optional: true }),
+        style({ transform: 'scale(0.5)', opacity: 0 }),
+        animate('0.3s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+          style({ transform: 'scale(1)', opacity: 1 })),
+      ]),
+      transition(':leave', [
+        style({ transform: 'scale(1)', opacity: 1, height: '*' }),
+        animate('0.3s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+          style({
+            transform: 'scale(0.5)', opacity: 0,
+            height: '0px', margin: '0px'
+          }))
+      ])
+    ]),
+    trigger('slideInLeft', [
+      state('in', style({opacity: 1, transform: 'translate3d(0, 0, 0)'})),
+      transition('void => *', [
+        style({
+          opacity: 0,
+          transform: 'translate3d(-100%, 0, 0)'
+        }),
+        animate('0.3s ease-in')
+      ]),
+    ])
+  ]
 })
 export class HomePageComponent implements OnInit {
 
-  public editOpen = false;
-
-  public tableOptions: any = {
-    headerItems: [
-      { title: 'Id', value: 'id' },
-      { title: 'First Name', value: 'firstName' },
-      { title: 'Email', value: 'email' },
-      { title: 'Company Name', value: 'companyName' },
-      { title: 'Created At', value: 'createdAt' },
-    ],
-    searchItems: [
-      { title: 'First Name', value: 'firstName' },
-      { title: 'Last Name', value: 'lastName' },
-      { title: 'Email', value: 'email' },
-      { title: 'Company Name', value: 'companyName' },
-      { title: 'Description', value: 'description' },
-      { title: 'Phone Number 1', value: 'phoneNumber1' },
-      { title: 'Phone Number 2', value: 'phoneNumber2' },
-    ],
-    checkedAll: false,
-  };
   public list: any[] = [];
 
   constructor(
     private router: Router,
     private dataService: DataService,
     private authService: AuthService
-  ) { }
+  ) {
+  }
 
   public ngOnInit() {
     this.getList();
@@ -52,20 +70,21 @@ export class HomePageComponent implements OnInit {
   }
 
   public goToDetails(id: number) {
-    console.log(this.editOpen);
-    this.editOpen = true;
+    console.log(this.dataService.openEdit);
+    this.dataService.openEdit(true);
     this.router.navigate(['home', 'edit', id], {queryParams: {id}});
   }
 
   public createUser() {
-    this.editOpen = true;
+    this.dataService.openEdit(true);
     this.router.navigate(['home', 'edit', 'newUser'], {queryParams: {id: 'newUser'}});
   }
 
 
-  public deleteUserData(id: number | string) {
+  public deleteUserData(id: number | string, index) {
     this.list = this.list.filter(item => item.id !== id);
     this.dataService.setData(this.list);
+    this.getList();
   }
 
 }

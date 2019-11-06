@@ -1,28 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {DataService} from '../../services/data';
 
 @Component({
   selector: 'app-manage-item',
   templateUrl: './manage-item.component.html',
-  styleUrls: ['./manage-item.component.css']
+  styleUrls: ['./manage-item.component.scss']
 })
 
 export class ManageItemComponent implements OnInit {
   public user: any = {};
   public userUnchanged: any = {};
   public options: any = {
-    isNew: true
+    isNew: true,
+    empty: false
   };
+
   constructor(
     public route: ActivatedRoute,
     public dataService: DataService
-  ) { }
+  ) {
+  }
 
   private static clone(sourceObj: any) {
     return JSON.parse(JSON.stringify(sourceObj));
   }
-
 
 
   public ngOnInit() {
@@ -55,11 +57,22 @@ export class ManageItemComponent implements OnInit {
   }
 
   public saveUser(user: any) {
-    if (user && user.id) {
-          console.log(user);
-          this.dataService.updateUser(user);
-        } else {
+    if ( !user.firstName || !user.lastName) {
+      this.options.empty = true;
+      console.log(this.options.empty);
+      return;
+    } else if (user && user.id) {
+      this.options.empty = false;
+      this.dataService.updateUser(user);
+      this.dataService.openEdit(false);
+    } else if (user) {
+      this.options.empty = false;
       this.dataService.createUser(user);
+      this.dataService.openEdit(false);
     }
+  }
+
+  public close() {
+    this.dataService.openEdit(false);
   }
 }

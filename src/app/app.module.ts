@@ -13,6 +13,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataService } from '../services/data';
 import { ManageItemComponent } from './manage-item/manage-item.component';
+import {MatTableModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ManageItemComponent } from './manage-item/manage-item.component';
     FormsModule,
     BrowserModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule
   ],
   providers: [
     HttpClientModule,

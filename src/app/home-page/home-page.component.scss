@@ -1,15 +1,68 @@
+/***********************************************************
+                        HEADER
+***********************************************************/
+.header {
+  height: 60px;
+  background: #5486a5;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  display: flex;
+  &--container {
+    max-width: 1900px;
+    margin: auto;
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  &--btn {
+    display: block;
+    height: 40px;
+    align-self: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 15px;
+    transition: 0.4s;
+    & :hover {
+      color: gray;
+      text-decoration: underline;
+    }
+  }
+}
+/***********************************************************
+                        MAIN
+***********************************************************/
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+td {
+  padding: 5px 10px
+}
 .table {
   margin: auto;
   border-radius: 4px;
   border: 1px solid gray;
   padding: 10px;
+  max-width: 500px;
+  width: 100%;
+
   &--row {
     border-collapse: collapse;
   }
   & :nth-child(even) .table--row {
-    background: #f4f4f4;
+    background: #f1f1f1;
   }
   .td {
     border: 1px solid black;
+  }
+  &--delete-cell, &--edit-cell {
+    width: 21px;
+    padding: 5px 0;
+    text-align: center;
   }
 }

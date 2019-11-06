@@ -7,6 +7,7 @@ export class DataService {
 
   data = [];
   obj = [];
+  public editOpen = false;
 
   public getList() {
     return new Observable((observer: Observer<any>) => {
@@ -52,5 +53,8 @@ export class DataService {
     console.log(result);
     localStorage.setItem('currentUser', JSON.stringify(result));
     return result;
+  }
+  public openEdit(bool: boolean) {
+    this.editOpen = bool;
   }
 }
