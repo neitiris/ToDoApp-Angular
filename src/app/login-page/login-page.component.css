@@ -1,0 +1,45 @@
+.login-container {
+  height: 75.7%;
+  width: 100%;
+  background: url("../../assets/bg.jpeg");
+  background-size: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 230px;
+  color: white;
+}
+
+.login-form-container {
+  margin: 10px;
+  height: 300px;
+  width: 300px;
+  background: #1a2226;
+  padding: 25px;
+  text-align: center;
+}
+
+form, input, button {
+  border-radius: 6px;
+}
+
+.lInput {
+  margin-bottom: 4px;
+}
+
+input {
+  height: 30px;
+  width: 240px;
+  font-size: 120%;
+  padding-left: 15px;
+}
+
+button {
+  margin-top: 20px;
+  height: 40px;
+  font-size: 120%;
+  background: aquamarine;
+  border: none;
+  box-shadow: #373c3e;
+}
+
+/*# sourceMappingURL=login-page.component.css.map */

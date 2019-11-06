@@ -1,0 +1,14 @@
+<div id="changes">
+  <ul>
+    <li><h3>First Name</h3>
+      <input type="text" name="firstName" [(ngModel)]="user.firstName" />
+      <input type="text" name="firstName" [(ngModel)]="user.lastName" />
+    </li>
+  </ul>
+  <button id="backMenu">Back</button>
+  <button
+    id="saveNpush" (click)="saveUser(user)"
+  >
+    {{options.isNew ? 'Create' : 'Update'}}
+  </button>
+</div>

@@ -1,0 +1,17 @@
+.table {
+  margin: auto;
+  border-radius: 4px;
+  border: 1px solid gray;
+  padding: 10px;
+}
+.table--row {
+  border-collapse: collapse;
+}
+.table :nth-child(even) .table--row {
+  background: #f4f4f4;
+}
+.table .td {
+  border: 1px solid black;
+}
+
+/*# sourceMappingURL=home-page.component.css.map */
