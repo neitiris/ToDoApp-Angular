@@ -1,6 +1,7 @@
 <div class="home-container">
   <h1 *ngIf="!list.length">List is empty</h1>
   <button (click)="logOut()">LogOut</button>
+  <button (click)="createUser()">addUser</button>
   <table class="table" *ngIf="list.length">
     <thead>
     <tr class="table--row">
@@ -14,11 +15,16 @@
     <ng-container class="tr-container">
       <tr class="table--row" *ngFor="let item of list">
         <td class="td f-name-column">{{item.firstName}}</td>
-        <td class="td l-name-column">{{item.secondName}}</td>
+        <td class="td l-name-column">{{item.lastName}}</td>
         <td
           class="td edit"
         >
-          <button class="editCl">E</button>
+          <button
+            class="editCl"
+            (click)="goToDetails(item.id)"
+          >
+            E
+          </button>
         </td>
         <td
           class="td delete-column"
@@ -34,5 +40,5 @@
     </ng-container>
     </tbody>
   </table>
-
+  <app-manage-item *ngIf="this.editOpen"></app-manage-item>
 </div>

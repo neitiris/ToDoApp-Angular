@@ -25,7 +25,7 @@ export class AuthService {
             user: 'Vlad',
             email: 'admin@admin.com',
             authToken: 'q12we34ad1',
-            data: [{firstName: 'Vlad', secondName: 'Senchuk', id: 12314123412}]
+            data: [{firstName: 'Vlad', lastName: 'Senchuk', id: 12314123412}]
           }
           : {err: 'wrong email/password'}
       );

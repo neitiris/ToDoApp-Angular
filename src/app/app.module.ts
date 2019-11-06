@@ -12,6 +12,7 @@ import { UnknownPageComponent } from './unknown-page/unknown-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataService } from '../services/data';
+import { ManageItemComponent } from './manage-item/manage-item.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { DataService } from '../services/data';
     LoginPageComponent,
     UnknownPageComponent,
     HomePageComponent,
+    ManageItemComponent,
   ],
   imports: [
     AppRoutingModule,

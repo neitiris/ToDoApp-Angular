@@ -10,6 +10,8 @@ import { AuthService } from '../../services/authservice';
 })
 export class HomePageComponent implements OnInit {
 
+  public editOpen = false;
+
   public tableOptions: any = {
     headerItems: [
       { title: 'Id', value: 'id' },
@@ -38,19 +40,27 @@ export class HomePageComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this.getList().subscribe(list => this.list = list);
+    this.getList();
   }
 
   public getList() {
-    return this.dataService.getList();
+    return this.dataService.getList().subscribe(list => this.list = list);
   }
 
   public logOut() {
     this.authService.logOutFunk();
   }
 
-  // public createUser() {
-  // }
+  public goToDetails(id: number) {
+    console.log(this.editOpen);
+    this.editOpen = true;
+    this.router.navigate(['home', 'edit', id], {queryParams: {id}});
+  }
+
+  public createUser() {
+    this.editOpen = true;
+    this.router.navigate(['home', 'edit', 'newUser'], {queryParams: {id: 'newUser'}});
+  }
 
 
   public deleteUserData(id: number | string) {
