@@ -1,18 +1,20 @@
-import {IAuthData} from '../../shared/interfaces';
-import {Injectable} from '@angular/core';
-import {Observable, Observer} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { IAuthData } from '../../shared/interfaces';
+import { Injectable } from '@angular/core';
+import { Observable, Observer } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable()
 
 export class AuthService {
   public logged = false;
   public user: IAuthData = {email: '', password: ''};
-  constructor() {
+  constructor(
+    public router: Router,
+  ) {
     this.userloggedin();
   }
 
-  // Authenticate function
   public authenticate(data: IAuthData) {
     console.log('data', data);
     return new Observable((observer: Observer<object>) => {
@@ -22,7 +24,8 @@ export class AuthService {
           ? {
             user: 'Vlad',
             email: 'admin@admin.com',
-            authToken: 'q12we34ad1'
+            authToken: 'q12we34ad1',
+            data: [{firstName: 'Vlad', secondName: 'Senchuk', id: 12314123412}]
           }
           : {err: 'wrong email/password'}
       );
@@ -32,7 +35,6 @@ export class AuthService {
     }));
   }
 
-  // Checking for login User
   public userloggedin() {
     if (localStorage.getItem('currentUser')) {
       this.logged = true;
@@ -40,8 +42,8 @@ export class AuthService {
     }
   }
 
-  // log out func, delete user from storage
   public logOutFunk() {
     localStorage.removeItem('currentUser');
+    this.router.navigate(['login']);
   }
 }

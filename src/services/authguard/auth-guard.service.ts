@@ -5,7 +5,6 @@ export class AuthGuardService implements CanActivate {
   constructor(public router: Router) {
   }
 
-  // Checking of key in storage
   canActivate(): boolean {
     if (!localStorage.getItem('currentUser')) {
       this.router.navigate(['login']);

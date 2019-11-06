@@ -10,6 +10,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthGuardService } from '../services/authguard';
 import { UnknownPageComponent } from './unknown-page/unknown-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DataService } from '../services/data';
 
 @NgModule({
   declarations: [
@@ -22,13 +24,15 @@ import { HomePageComponent } from './home-page/home-page.component';
     AppRoutingModule,
     FormsModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [
     HttpClientModule,
     HttpClient,
     AuthService,
     AuthGuardService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })

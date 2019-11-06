@@ -1,1 +1,38 @@
-<p>home-page works!</p>
+<div class="home-container">
+  <h1 *ngIf="!list.length">List is empty</h1>
+  <button (click)="logOut()">LogOut</button>
+  <table class="table" *ngIf="list.length">
+    <thead>
+    <tr class="table--row">
+      <th></th>
+      <th></th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody class="table--body">
+    <ng-container class="tr-container">
+      <tr class="table--row" *ngFor="let item of list">
+        <td class="td f-name-column">{{item.firstName}}</td>
+        <td class="td l-name-column">{{item.secondName}}</td>
+        <td
+          class="td edit"
+        >
+          <button class="editCl">E</button>
+        </td>
+        <td
+          class="td delete-column"
+        >
+          <button
+            class="deleteCl"
+            (click)="deleteUserData(item.id)"
+          >
+            D
+          </button>
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+
+</div>

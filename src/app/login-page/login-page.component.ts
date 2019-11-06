@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-loginpage',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent {
   public user: IAuthData = {email: '', password: ''};
@@ -19,18 +19,6 @@ export class LoginPageComponent {
     }
   }
 
-
-  // Calling Exit function from AuthService
-  quit() {
-    this.authService.logOutFunk();
-  }
-
-  // Calling boolean status variable logged from AuthService
-  lLogged() {
-    return this.authService.logged;
-  }
-
-  // Calling authorisation function from AuthService
   auth(user) {
     this.authService.authenticate(user).subscribe(
       (userData: any) => {
