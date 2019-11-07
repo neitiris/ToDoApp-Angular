@@ -1,8 +1,7 @@
 .login-container {
   height: 75.7%;
   width: 100%;
-  background: url("../../assets/bg.jpeg");
-  background-size: 100%;
+  background: #484848;
   display: flex;
   justify-content: center;
   padding-top: 230px;

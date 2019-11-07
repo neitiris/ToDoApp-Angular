@@ -7,7 +7,7 @@ export class DataService {
 
   data = [];
   obj = [];
-  public editOpen = false;
+  editOpen = false;
 
   public getList() {
     return new Observable((observer: Observer<any>) => {
@@ -32,16 +32,18 @@ export class DataService {
     localStorage.setItem('currentUser', JSON.stringify(result));
     return result;
   }
+
   public updateUser(changedUser) {
     this.data = this.data.map((user) => {
       console.log(user.id === changedUser.id ? changedUser : user);
       return user.id === changedUser.id ? changedUser : user;
     });
-    const result = { data: this.data};
+    const result = {data: this.data};
     console.log(result);
     localStorage.setItem('currentUser', JSON.stringify(result));
     return result;
   }
+
   public createUser(newUser) {
     const user = {
       firstName: newUser.firstName,
@@ -49,11 +51,12 @@ export class DataService {
       id: Math.random() * Math.random()
     };
     this.data.push(user);
-    const result = { data: this.data};
+    const result = {data: this.data};
     console.log(result);
     localStorage.setItem('currentUser', JSON.stringify(result));
     return result;
   }
+
   public openEdit(bool: boolean) {
     this.editOpen = bool;
   }

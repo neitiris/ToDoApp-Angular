@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {DataService} from '../../services/data';
+import {HomePageComponent} from '../home-page/home-page.component';
 
 @Component({
   selector: 'app-manage-item',
@@ -18,7 +19,8 @@ export class ManageItemComponent implements OnInit {
 
   constructor(
     public route: ActivatedRoute,
-    public dataService: DataService
+    public dataService: DataService,
+    public homePage: HomePageComponent
   ) {
   }
 
@@ -65,6 +67,7 @@ export class ManageItemComponent implements OnInit {
       this.options.empty = false;
       this.dataService.updateUser(user);
       this.dataService.openEdit(false);
+      this.homePage.getList();
     } else if (user) {
       this.options.empty = false;
       this.dataService.createUser(user);
